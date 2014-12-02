@@ -47,3 +47,16 @@ imshow(frame);
 %imshow(frame);
 
 
+%improvement
+%{
+reg1 = regress(P1(3,:)',[P1(1:2,:)' ones(size(P1(3,:)'))]);
+reg1 = [reg1(1) reg1(2) -1 reg1(3)];
+plane1_improved = reg1/norm(reg1);
+
+reg2 = regress(P2(3,:)',[P2(1:2,:)' ones(size(P2(3,:)'))]);
+reg2 = [reg2(1) reg2(2) -1 reg2(3)];
+plane2_improved = reg2/norm(reg2);
+
+frame = drawNovelView(plane1_improved', plane2_improved', M1);
+imshow(frame);
+%}
