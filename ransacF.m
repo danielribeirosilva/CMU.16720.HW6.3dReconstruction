@@ -1,7 +1,7 @@
 function [F,inliers] = ransacF(pts1, pts2, normalization_constant)
 
 %total times to run
-n = 1000000;
+n = 100000;
 
 %params
 threshold = 0.0008;
@@ -39,7 +39,7 @@ for i=1:n
             totalError = totalError + pointError;
         end
         
-        if totalError < bestError && numel(allInliers)>=numel(bestInliers)
+        if  numel(allInliers)>numel(bestInliers) || ( totalError < bestError && numel(allInliers)>=numel(bestInliers) )
             bestError = totalError;
             bestInliers = allInliers;
             bestF = F;
